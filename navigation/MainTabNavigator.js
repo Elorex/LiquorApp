@@ -3,16 +3,16 @@ import { Platform } from 'react-native';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import RecipesScreen from '../screens/RecipesScreen';
+import BarcodeScreen from '../screens/BarcodeScreen';
+import ShelfScreen from '../screens/ShelfScreen';
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
+const RecipesStack = createStackNavigator({
+  Recipes: RecipesScreen,
 });
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+RecipesStack.navigationOptions = {
+  tabBarLabel: 'Recipes',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -25,26 +25,26 @@ HomeStack.navigationOptions = {
   ),
 };
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
+const BarcodeStack = createStackNavigator({
+  Barcode: BarcodeScreen,
 });
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+BarcodeStack.navigationOptions = {
+  tabBarLabel: 'Bar Code',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
+      name={Platform.OS === 'ios' ? 'ios-barcode-outline' : 'md-barcode'}
     />
   ),
 };
 
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
+const ShelfStack = createStackNavigator({
+  Shelf: ShelfScreen,
 });
 
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
+ShelfStack.navigationOptions = {
+  tabBarLabel: 'Shelf',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -54,7 +54,7 @@ SettingsStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
+  RecipesStack,
+  BarcodeStack,
+  ShelfStack,
 });
