@@ -54,7 +54,7 @@ ShelfStack.navigationOptions = {
 };
 
 export default createBottomTabNavigator({
-  RecipesStack,
   BarcodeStack,
+  RecipesStack,
   ShelfStack,
 });
