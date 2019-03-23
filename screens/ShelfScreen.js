@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ListView, ScrollView } from 'react-native';
-import { Constants, SQLite } from 'expo';
+import { Constants, SQLite} from 'expo';
 
 export default class ShelfScreen extends Component {
   constructor(props) {
