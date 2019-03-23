@@ -30,7 +30,7 @@ const BarcodeStack = createStackNavigator({
 });
 
 BarcodeStack.navigationOptions = {
-  tabBarLabel: 'Bar Code',
+  tabBarLabel: 'Barcode Scanner',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
