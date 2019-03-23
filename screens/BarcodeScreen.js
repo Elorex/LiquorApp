@@ -3,9 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { BarCodeScanner, Permissions, SQLite } from 'expo';
 import { BaseModel, types } from 'expo-sqlite-orm';
 
-var db = SQLite.openDatabase('LiquorAppTest.db')
-
-export default class BarcodeScanner extends React.Component {
   state = {
     hasCameraPermission: null,
   }
@@ -63,3 +60,14 @@ const styles = StyleSheet.create({
     paddingTop: 200,
   },
 });
+  handleBarCodeScanned = ({ type, data }) => {
+
+    if (type==512){barcodeToUPC(data);}
+    else if (type==32){barcodeToEAN(data);}
+    else{
+    //alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    alert("Barcode format is not supported");
+    }
+  }
+}
+
