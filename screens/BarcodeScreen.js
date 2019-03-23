@@ -1,22 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { BarCodeScanner, Permissions } from 'expo';
+import { BarCodeScanner, Permissions, SQLite } from 'expo';
+import { BaseModel, types } from 'expo-sqlite-orm';
 
-function barcodeToUPC (data){
-  var UPC = data.slice(1,data.length);
-  alert(UPC);
-}
-
-function barcodeToEAN (data){
-  var EAN = data.slice(2,data.length);
-  alert(EAN);
-}
-
-function addToLib(bcode){
-  //Insert into SHELF the data from the Library, where the UPC matches the entered data.
-}
-
-export default class BarcodeScannerExample extends React.Component {
   state = {
     hasCameraPermission: null,
   }
@@ -30,10 +16,10 @@ export default class BarcodeScannerExample extends React.Component {
     const { hasCameraPermission } = this.state;
 
     if (hasCameraPermission === null) {
-      return <Text>Requesting for camera permission</Text>;
+      return <Text style={styles.text}>Requesting for camera permission</Text>;
     }
     if (hasCameraPermission === false) {
-      return <Text>No access to camera</Text>;
+      return <Text style={styles.text}>No access to camera</Text>;
     }
     return (
       <View style={{ flex: 1 }}>
@@ -44,6 +30,36 @@ export default class BarcodeScannerExample extends React.Component {
       </View>
     );
   }
+
+  handleBarcodeScanned = ({ type, data }) => {
+    var liquorType;
+    if (type==512) {
+      db.transaction ((tx) => {
+        tx.executeSql('SELECT type FROM ingredient where upc=?', [data], (tx, results) => {
+          var len = results.rows.length;
+          if (len > 0) {
+            liquorType = results.rows.items(0).type;
+          } else {
+            alert('UPC does not exist');
+            return;
+          }
+        });
+        tx.executeSql('INSERT into useringredient(user, ingredient) values (?, ?)', ['user', liquorType], (tx));
+        alert('Added to Shelf');
+      });
+
+   } else {alert("Barcode format is not supported");}
+  }
+}
+
+const styles = StyleSheet.create({
+  text: {
+    flex: 1,
+    fontSize: 50,
+    textAlign: 'center',
+    paddingTop: 200,
+  },
+});
   handleBarCodeScanned = ({ type, data }) => {
 
     if (type==512){barcodeToUPC(data);}
@@ -54,3 +70,4 @@ export default class BarcodeScannerExample extends React.Component {
     }
   }
 }
+

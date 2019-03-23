@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, ScrollView } from 'react-native';
-import { Constants } from 'expo';
+import { Constants, SQLite } from 'expo';
 const DATA = Array.from(Array(100)).map((_, i) => <Text>{i}</Text>)
 
 export default class RecipeList extends Component {
@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
   },
   scrollview: {
     width: 340,
-    backgroundColor: 'blue',
+    backgroundColor: '#ffffff',
   },
   innerview: {
-    backgroundColor: 'green',
+    backgroundColor: '#c7d4cE',
     width: 100,
   },
 });
