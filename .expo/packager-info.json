@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 21280,
-  "expoServerNgrokUrl": "https://en-aq3.kashmoney1419.liquorapp.exp.direct",
-  "packagerNgrokUrl": "https://packager.en-aq3.kashmoney1419.liquorapp.exp.direct",
-  "ngrokPid": 19008,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
